@@ -6,18 +6,38 @@ class TestingClass(unittest.TestCase):
 
     @mock.patch('sys.stdout')
     @mock.patch('example.myRequest')
-    def test_dictionary_equal(self, mock_request, mock_stdout):
+    def test_dictionary_equal_true(self, mock_request, mock_stdout):
+        num = 1234
         fakeData = {
             "first_second": [
                 {
                     "name": "first",
-                    "id": "1234"
+                    "id": num
                 },
                 {
                     "name": "second",
-                    "id": 1234
+                    "id": str(num)
                 }
             ]
         }
-        toTestFunc(1234, "first_second")
+        toTestFunc(num, "first_second", True)
+        mock_request.assert_called_with(data=fakeData)
+
+    @mock.patch('sys.stdout')
+    @mock.patch('example.myRequest')
+    def test_dictionary_equal_false(self, mock_request, mock_stdout):
+        num = 1234
+        fakeData = {
+            "first_second": [
+                {
+                    "name": "first",
+                    "id": str(num)
+                },
+                {
+                    "name": "second",
+                    "id": num
+                }
+            ]
+        }
+        toTestFunc(num, "first_second", False)
         mock_request.assert_called_with(data=fakeData)
