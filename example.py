@@ -1,15 +1,16 @@
-def main(num, name):
+def main(arg1, arg2):
+    names = arg2.split("_")
     dict = {
-        "fields": {
-            "fake_custom": [
-                {
-                    "id": name
-                },
-                {
-                    "id": num
-                }
-            ]
-        }
+        arg2: [
+            {
+                "name": names[0],
+                "id": str(arg1)
+            },
+            {
+                "name": names[1],
+                "id": arg1
+            }
+        ]
     }
 
     myRequest(data=dict)
