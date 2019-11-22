@@ -4,8 +4,9 @@ from example import main as toTestFunc
 
 class TestingClass(unittest.TestCase):
 
+    @mock.patch('sys.stdout')
     @mock.patch('example.myRequest')
-    def test_dictionary_equal(self, mock_request):
+    def test_dictionary_equal(self, mock_request, mock_stdout):
         fakeData = {
             "first_second": [
                 {

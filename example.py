@@ -12,7 +12,7 @@ def main(arg1, arg2):
             }
         ]
     }
-
+    print("hello world")
     myRequest(data=dict)
 
 def myRequest(data=dict):
